@@ -76,4 +76,9 @@ Follow these rules for activating and decommissioning hosts:
 
 For example, Hector is rendered in the Lowlands area on load of the page. Clicking on Hector will show more information about him on the bottom-right of the screen. In his host information, I can see he is active. If I click on the toggle (radio button), he becomes decommissioned and I immediately see him thumbnail in Cold Storage instead of on the map.
 
-BONUS: Format the name in each `Area` component to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains".
+
+
+
+BONUS
+---------------------------
+(1) Format the name in each `Area` component to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains".
