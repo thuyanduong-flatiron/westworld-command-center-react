@@ -5,9 +5,9 @@
 
 Overview
 ========
-The Executives at Delos Inc. need you to help them build some software for their new theme park: WestWorld. WestWorld is an interactive theme park where guests get to experience life in the Wild Wild West with the help of some AI known as "Hosts". But WestWorld needs a way to deploy these hosts to different areas of the park and bring them back to "Cold Storage" where they can be repaired or retired. Your job is to create a React based interface that allows you to select Hosts, activate them, and send them to any area of the park or call them back to Cold Storage. Your application should look something like this when you're finished:
+The Executives at Delos Inc. need you to help them build some software for their new theme park: WestWorld. WestWorld is an interactive theme park where guests get to experience life in the Wild Wild West with the help of some AI known as "Hosts". But WestWorld needs a way to deploy these hosts to different areas of the park and bring them back to "Cold Storage" where they can be repaired or retired. Your job is to create a React based interface that allows you to select Hosts, activate them by sending them to any area of the park or deactivate them by calling them back to Cold Storage. Your application should look something like when the page loads:
 
-![alt map](https://i.imgur.com/mPo0UYQ.png)
+![TODO: Update image])
 
 Note on Styling
 ---------------
@@ -39,50 +39,45 @@ Endpoints:
 Deliverables
 ============
 
-The components and styling have already been given to you. It'll be your job to import the components in the right order to build the component tree correctly and add most of the logic. Any conditional styling will be given via changing classNames. For example, if styling on a button should be changed based on a click, you'll be given two classNames to swap in depending on what the current status of that button is.
+The components and styling have already been given to you. It'll be your job to import the components in the right order to build the component tree correctly and add most of the logic.
 
 Checkpoint 1: Build the Component Tree
 --------------------------------------
-Determine how the component tree should be built. Some of the imports have already been given for you. Before you get started, it is highly suggested to draw your component tree on paper. A couple things to note:
+Determine how the component tree should be built. Some of the component tree has already been built for you. Before you get started, it is highly suggested to draw your existing component tree on paper. Then using visual clues from the example gif and clues from the comments within the code, where should the other components go in your component tree? A couple things to note:
 
-1. Let the visual cue of the application guide you. For example, there are clearly two main sections to this application: The top half (`WestworldMap`) and the bottom half (`Headquarters`). How should each of those components import the components that live inside them?
-2. Aside from visual cues, what functional cues can you get from the application? For example, clearly the `Area` component holds hosts in a type of list. So what component does an area need to render that list? Is there another component that also holds hosts in a list that's not an area component?
+1. The root component is `App`. Within App, there are two main sections to this application: The top half (`WestworldMap`) and the bottom half (`Headquarters`). How should each of those components import the components that live inside them?
+2. Aside from visual cues, what functional cues can you get from the application? For example, it seems that the  `WestworldMap` contains multiple areas. A single `Area` component seems to hold hosts in a type of list. So what component does an area need to render that list? Is there another component that also holds hosts in a list that's not an area component?
 3. Remember that two separate component branches can import the same component.
 
 Checkpoint 2: Determine Where State Lives
 -----------------------------------------
-You're going to be fetching information from two endpoints. Where should you be doing that and where should that data live once it's been fetched? Remember the rule: hold state as high as necessary but NO HIGHER. For example:
-
-![alt map](https://i.imgur.com/ge9Hfz9.jpg)
+You're going to be fetching information from two endpoints `/areas` and `/hosts`. Make sure you have taken a good look at this data and come up with a good way to store state. Where should you be doing that and where should that data live once it's been fetched?
 
 Checkpoint 3: Render the Areas
 ------------------------------
-Area info comes in through the `/areas` endpoint. You'll have to use that to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. Format the name to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains"
+Area info comes in through the `/areas` endpoint. You'll have to use that information to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. For example `id=python_pass` or `id={areaObject.name}`.
 
-Checkpoint 4: Render the Hosts
+Checkpoint 4: Render the Hosts inside the Area and Cold Storage
 ------------------------------
-The `Host` component represents a host Thumbnail. You'll have to render the appropriate number of hosts based on the data fetched from the `/hosts` endpoint with the appropriate imageUrl for each. You'll also need to make sure they render in the right place. Note that their `active` attribute is set to `false`, meaning they come in decommissioned. Decommissioned hosts should always appear in `ColdStorage` no matter what their `area` attribute is set to.
+The `Host` component represents a host Thumbnail. For each `Area`, you'll have to render the appropriate number of hosts based on the data fetched from the `/hosts` endpoint with the appropriate imageUrl for each. If the host has an area of `cold_storage`, DO NOT render that host inside any `Area` component. Instead, you will need to make sure that host is rendered in the ColdStorage some how. Make sure you render all `Host` components to the right place on load of the page. Only one `Host` can exist on the screen at a time. If they're in `Cold Storage` then they're not on the `WestworldMap` and visa versa.
 
-Checkpoint 5: Host Behavior
+IMPORTANT: Once you fetch to get a list of areas and a list of hosts, you do not need to communicate with the server for the rest of the app. All other features will change how the `App` is rendered on the front end WITHOUT persisting the changes in the back end.
+
+Checkpoint 5: Details and HostInfo
 ---------------------------
 Follow these rules for selecting and moving hosts:
 
-1. Clicking a `Host` selects them with a red border and displays their information in the `HostInfo` component. Styling has been given via classNames (see Host component).
-2. Only one `Host` can be selected at a time.
-3. Only one `Host` can exist on the screen at a time. If they're in `Cold Storage` then they're not on the `WestworldMap` and visa versa.
-4. If a host's `active` attribute is set to `false` then they are decommissioned and should appear in `ColdStorage`. The `HostInfo` radio button should reflect this as well, reading "Active" if `active: true` and "Decomissioned" if `active: false`.
-5. The Area dropdown should be pre-selected with the area the host is currently in, even if they are in `ColdStorage`.
-6. If a host is Active, selecting a new area from the dropdown should move that host to the corresponding area. If the host is Decommissioned they should not be able to leave `ColdStorage`, but their `area` attribute/dropdown should still update.
-7. Setting a hosts toggle to Decommissioned should immediately remove them from their area and place them in `ColdStorage`.
+1. On load of the page, your `Details` component should show an image that is the West World logo.
+2. Clicking on any `Host` component will have the `Details` component display more information about that `Host`.
+3. The Area dropdown should be pre-selected with the area the host is currently in, even if they are in `ColdStorage`.
+4. Clicking on the drop down shows 
+5. Selecting a new area from the dropdown should move that host to the corresponding area.
 
-Checkpoint 6: Limit Hosts
---------------------------
-Each `Area` should only allow the number of hosts given by that area's limit attribute. This includes hosts set to areas in `ColdStorage`. This is a hard deliverable and there are many ways to do this. Think about where you should actually be blocking this action (ie. what component should the rejection happen in).
-
-
-Finish
+BONUS
 ------
-If you've completed all the Checkpoints, good for you because that is a ton! It is very rare that people are able to finish this in an all day pairing/solo attempt. It would be awesome if you could share the way you solved it!
+1. Format the name in each `Area` component to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains"
+2. Add in some additional logic so that you cannot add a `Host` to an `Area` if that `Area` is at it's limit. Each area already has a property named limit. Instead of adding a host to an area that is at its max capacity, `alert()` an error message to the screen.
+
 
 Contributing
 ------------
