@@ -42,6 +42,7 @@ class HostInfo extends Component {
       </Grid>
     )
   }
+
 }
 
 export default HostInfo
