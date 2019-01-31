@@ -15,7 +15,6 @@ class HostInfo extends Component {
   }
 
 
-
   handleChange = (e, {value}) => {
     // the 'value' attribute is given via Semantic's Dropdown component.
     // Put a debugger in here and see what the "value" variable is when you pass in different options.
@@ -31,7 +30,7 @@ class HostInfo extends Component {
       <Grid>
         <Grid.Column width={6}>
           <Image
-            src={ /* pass in the right image here */ }
+            src={/* pass in the right image here */""}
             floated='left'
             size='small'
             className="hostImg"
@@ -47,10 +46,8 @@ class HostInfo extends Component {
               <Card.Meta>
                 <Radio
                   onChange={this.toggle}
-                  label={"Active"}
-                  {/* Sometimes the label should take "Decommissioned". How are we going to conditionally render that? */}
-                  checked={true}
-                  {/* Checked takes a boolean and determines what position the switch is in. Should it always be true? */}
+                  label={"Active" /* Sometimes the label should take "Decommissioned". How are we going to conditionally render that? */}
+                  checked={true /* Checked takes a boolean and determines what position the switch is in. Should it always be true? */}
                   slider
                 />
               </Card.Meta>
