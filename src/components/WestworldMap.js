@@ -1,8 +1,8 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react';
 
-//This component was given to you as a functional component, but you can always refactor. You can make it class or functional, what makes the most sense to you?
 const WestworldMap = () => {
+  // Remember, there's many ways to do this. This doesn't have to be a function component. It can be a class. It's up to you.
 
   return (
     <Segment id="map" >
