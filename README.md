@@ -7,7 +7,7 @@ Overview
 ========
 The Executives at Delos Inc. need you to help them build some software for their new theme park: WestWorld. WestWorld is an interactive theme park where guests get to experience life in the Wild Wild West with the help of some AI known as "Hosts". But WestWorld needs a way to deploy these hosts to their areas of the park and bring them back to "Cold Storage" where they can be repaired or retired. Your job is to create a React based interface that allows you to select Hosts, activate them by sending them to their assigned area of the park or deactivate them by calling them back to Cold Storage. Your application should look something like when the page loads:
 
-![TODO: Update image])
+![alt example](./public/picture.png))
 
 Note on Styling
 ---------------
@@ -71,6 +71,8 @@ Follow these rules for activating and decommissioning hosts:
 2. Clicking on any `Host` component will have the `Details` component display more information about that `Host`. Is there a component that might be useful for displaying info about a host???
 3. If a host's active attribute is set to false then they are decommissioned and should appear in ColdStorage. The HostInfo radio button should reflect this as well, reading "Active" if `active: true` and "Decommissioned" if `active: false`.
 4. Clicking on the radio button toggles the active status of that host, and the `WestworldMap` and `ColdStorage` should re-render accordingly.
+
+![alt example](./public/gif.gif))
 
 For example, Hector is rendered in the Lowlands area on load of the page. Clicking on Hector will show more information about him on the bottom-right of the screen. In his host information, I can see he is active. If I click on the toggle (radio button), he becomes decommissioned and I immediately see him thumbnail in Cold Storage instead of on the map.
 
