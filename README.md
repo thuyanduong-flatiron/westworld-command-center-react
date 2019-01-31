@@ -15,10 +15,6 @@ The styling is a mix of pre-written CSS and Semantic components. Don't worry abo
 
 [Semantic UI React Docs](https://react.semantic-ui.com/)
 
-Setup
-=====
-Watch a walk through of what's expected to complete this challenge here: https://youtu.be/GhCazAgsJzw
-
 Clone
 -----
 `git fork` and `git clone` this repo onto your computer.
@@ -46,7 +42,7 @@ Checkpoint 1: Build the Component Tree
 Determine how the component tree should be built. Some of the component tree has already been built for you. Before you get started, it is highly suggested to draw your existing component tree on paper. Then using visual clues from the example gif and clues from the comments within the code, where should the other components go in your component tree? A couple things to note:
 
 1. The root component is `App`. Within App, there are two main sections to this application: The top half (`WestworldMap`) and the bottom half (`Headquarters`). How should each of those components import the components that live inside them?
-2. Aside from visual cues, what functional cues can you get from the application? For example, it seems that the  `WestworldMap` contains multiple areas. A single `Area` component seems to hold hosts in a type of list. So what component does an area need to render that list? Is there another component that also holds hosts in a list that's not an area component?
+2. Aside from visual cues, what functional cues can you get from the application? For example, it seems that the  West World Map contains multiple areas. A single `Area` component seems to hold hosts in a type of list. So what component does an area need to render that list? Is there another component that also holds hosts in a list that's not an area component?
 3. Remember that two separate component branches can import the same component.
 
 Checkpoint 2: Determine Where State Lives
@@ -55,30 +51,23 @@ You're going to be fetching information from two endpoints `/areas` and `/hosts`
 
 Checkpoint 3: Render the Areas
 ------------------------------
-Area info comes in through the `/areas` endpoint. You'll have to use that information to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. For example `id=python_pass` or `id={areaObject.name}`.
+Area information comes in through the `/areas` endpoint. You'll have to use that information to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. For example `id=python_pass` or `id={areaObject.name}`. Format the name in each `Area` component to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains"
 
-Checkpoint 4: Render the Hosts inside the Area and Cold Storage
+Checkpoint 4: Render the Hosts
 ------------------------------
-The `Host` component represents a host Thumbnail. For each `Area`, you'll have to render the appropriate number of hosts based on the data fetched from the `/hosts` endpoint with the appropriate imageUrl for each. If the host has an area of `cold_storage`, DO NOT render that host inside any `Area` component. Instead, you will need to make sure that host is rendered in the ColdStorage some how. Make sure you render all `Host` components to the right place on load of the page. Only one `Host` can exist on the screen at a time. If they're in `Cold Storage` then they're not on the `WestworldMap` and visa versa.
+The `Host` component represents a host Thumbnail. Be sure the thumbnail shows up appropriately.
+
+A host will either has a status of `active: false` or `active: true`. If the host has property `active: true`, that `Host` is Active should be rendered the correct `Area` component as specified in that host's area property. If the host has a property `active: false`, they are Decommissioned and should instead be rendered in the `ColdStorage`. Make sure you render all `Host` components to the right place on load of the page. Only one `Host` can exist on the screen at a time. If they're in `Cold Storage` then they're not on the `WestworldMap` and visa versa.
 
 IMPORTANT: Once you fetch to get a list of areas and a list of hosts, you do not need to communicate with the server for the rest of the app. All other features will change how the `App` is rendered on the front end WITHOUT persisting the changes in the back end.
 
-Checkpoint 5: Details and HostInfo
+Checkpoint 5: Details
 ---------------------------
 Follow these rules for selecting and moving hosts:
 
 1. On load of the page, your `Details` component should show an image that is the West World logo.
-2. Clicking on any `Host` component will have the `Details` component display more information about that `Host`.
-3. The Area dropdown should be pre-selected with the area the host is currently in, even if they are in `ColdStorage`.
-4. Clicking on the drop down shows 
-5. Selecting a new area from the dropdown should move that host to the corresponding area.
+2. Clicking on any `Host` component will have the `Details` component display more information about that `Host`. Is there a component that might be useful for displaying info about a host???
+3. If a host's active attribute is set to false then they are decommissioned and should appear in ColdStorage. The HostInfo radio button should reflect this as well, reading "Active" if `active: true` and "Decommissioned" if `active: false`.
+4. Clicking on the radio button toggles the active status of that host, and the `WestworldMap` and `ColdStorage` should re-render accordingly.
 
-BONUS
-------
-1. Format the name in each `Area` component to remove underscores and capitalize all words for the label. Ex: 'high_plains' should be displayed as "High Plains"
-2. Add in some additional logic so that you cannot add a `Host` to an `Area` if that `Area` is at it's limit. Each area already has a property named limit. Instead of adding a host to an area that is at its max capacity, `alert()` an error message to the screen.
-
-
-Contributing
-------------
-If you find any bugs or have some suggestions, send a PR and we'll try to incorporate it!
+For example, Dolores is rendered in the High Plains area on load of the page. Clicking on Dolores will show more information about her on the bottom-right of the screen. In her host information, I can see she is active. If I click on the toggle (radio button), she becomes decommissioned and I immediately see her thumbnail in Cold Storage instead of on the map.
