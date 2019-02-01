@@ -51,7 +51,7 @@ You're going to be fetching information from two endpoints `/areas` and `/hosts`
 
 Checkpoint 3: Render the Areas
 ------------------------------
-Area information comes in through the `/areas` endpoint. You'll have to use that information to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. For example `id=python_pass` or `id={areaObject.name}`.
+Area information comes in through the `/areas` endpoint. You'll have to use that information to render the right number of area components on the map. Styling is given for you but you'll have to pass the area name to the `id` attribute to make it appear in the right place on the map. *For example `id=python_pass`* or `id={areaObject.name}`.
 
 Checkpoint 4: Render the Hosts
 ------------------------------
